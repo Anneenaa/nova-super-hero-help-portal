@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NOVA | The Hero Who Listens</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(80, 60, 180, 0.25), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(40, 100, 220, 0.2), transparent 35%),
+    linear-gradient(135deg, #050816, #0b1026, #050816);
+  color: white;
+  min-height: 100vh;
+}
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px 25px;
+        }
+        .nova-hero-image {
+  width: 320px;
+  max-width: 80%;
+  border-radius: 20px;
+  display: block;
+  margin: 0 auto 25px;
+  animation: novaFloat 4s ease-in-out infinite;
+  box-shadow:
+    0 0 20px rgba(100, 80, 255, 0.6),
+    0 0 40px rgba(80, 120, 255, 0.5),
+    0 0 70px rgba(150, 80, 255, 0.4),
+    0 0 100px rgba(100, 100, 255, 0.25),
+}
+
+        .hero h1 {
+  font-size: 60px;
+  margin: 0;
+  letter-spacing: 5px;
+  text-shadow:
+    0 0 10px #7c5cff,
+    0 0 20px #7c5cff,
+    0 0 40px #4f8cff;
+}
+
+        .hero h2 {
+            font-size: 22px;
+            font-weight: normal;
+            margin-top: 10px;
+        }
+
+        .hero p {
+            color: #cbd5ff;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 650px;
+            margin: 20px auto 50px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .chat-container {
+  border: 1px solid rgba(140, 110, 255, 0.45);
+  box-shadow:
+    0 0 25px rgba(90, 70, 255, 0.25),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+        .chat-box {
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 15px;
+            margin: 10px 0;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+
+        .nova {
+  background: linear-gradient(135deg, #243b7a, #3b2f7a);
+  margin-right: auto;
+  border: 1px solid rgba(150, 130, 255, 0.3);
+  box-shadow: 0 0 15px rgba(100, 80, 255, 0.2);
+  position: relative;
+  padding-left: 45px;
+}
+
+        .user {
+            background: #5d4bb7;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        input {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            font-size: 16px;
+            box-shadow: 0 0 15px rgba(120, 90, 255, 0.25);
+transition: 0.3s ease;
+        }
+        input:focus {
+  box-shadow: 0 0 20px rgba(120, 90, 255, 0.6);
+}
+
+        button {
+            padding: 14px 22px;
+            border: none;
+            border-radius: 25px;
+            background: #ffffff;
+            color: #162d68;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(120, 90, 255, 0.7)
+        }
+
+        .status {
+            text-align: center;
+            color: #9daeff;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .origin {
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 35px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(130, 110, 255, 0.3);
+  border-radius: 25px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(90, 70, 255, 0.2);
+}
+
+.origin h2 {
+  font-size: 32px;
+  margin-top: 0;
+  text-shadow: 0 0 15px #7c5cff;
+}
+
+.origin p {
+  color: #d6dcff;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.origin h3 {
+  margin-top: 25px;
+  color: #b9aaff;
+  font-style: italic;
+  text-shadow: 0 0 10px #7c5cff;
+}
+.powers {
+  width: 90%;
+  max-width: 900px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.powers h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-shadow: 0 0 15px #7c5cff;
+}
+
+.power-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.power-card {
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(130, 110, 255, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(90, 70, 255, 0.2);
+  transition: 0.3s ease;
+}
+
+.power-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(180, 160, 255, 0.8);
+  box-shadow:
+    0 0 20px rgba(120, 90, 255, 0.6),
+    0 0 45px rgba(80, 120, 255, 0.35);
+}
+
+.power-card h3 {
+  font-size: 21px;
+  margin-top: 0;
+}
+
+.power-card p {
+  color: #d6dcff;
+  line-height: 1.6;
+}
+.mission {
+  width: 90%;
+  max-width: 900px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.mission h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-shadow: 0 0 15px #7c5cff;
+}
+
+.mission-content {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.mission-card {
+  flex: 1;
+}
+
+.mission-card {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(130, 110, 255, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(90, 70, 255, 0.2);
+  transition: 0.3s ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(120, 90, 255, 0.5);
+}
+
+.mission-card h3 {
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.mission-card p {
+  color: #d6dcff;
+  line-height: 1.7;
+}
+
+.mission-card strong {
+  display: block;
+  margin-top: 20px;
+  color: #b9aaff;
+  text-shadow: 0 0 10px #7c5cff;
+}
+@keyframes novaFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.nova-hero-image {
+  animation: novaFloat 4s ease-in-out infinite;
+}
+.nova-hero-image:hover {
+  transform: scale(1.03);
+  filter: brightness(1.15);
+  transition: 0.3s ease ;
+}
+.mission-card {
+  display: block !important;
+  padding: 25px !important;
+  margin: 15px 0 !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 2px solid #7c5cff !important;
+  border-radius: 20px !important;
+}
+.mission-content {
+  display: flex !important;
+  gap: 20px !important;
+  width: 100% !important;
+}
+
+.mission-card {
+  flex: 1 !important;
+  padding: 30px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(130, 110, 255, 0.5) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 0 25px rgba(90, 70, 255, 0.3) !important;
+}
+<nav class="navbar">
+  <div class="logo">NOVA ✦</div>
+
+  <div class="nav-links">
+    <a href="#origin">Origin</a>
+    <a href="#powers">Powers</a>
+    <a href="#mission">Mission</a>
+    <a href="#chat">Ask NOVA</a>
+  </div>
+</nav>
+.navbar {
+  width: 90%;
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(140, 110, 255, 0.4);
+  border-radius: 20px;
+
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(90, 70, 255, 0.2);
+
+  position: sticky;
+  top: 10px;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px #7c5cff;
+  transition: 0.3s ease;
+}
+  .logo:hover {
+  transform: scale(1.08);
+  text-shadow:
+    0 0 10px #7c5cff,
+    0 0 25px #4f8cff;
+}
+
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+  text-shadow:
+    0 0 8px #7c5cff,
+    0 0 18px #7c5cff,
+    0 0 30px #4f8cff;
+  transform: translateY(-2px);
+}
+.navbar {
+  width: 90%;
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(140, 110, 255, 0.4);
+  border-radius: 20px;
+
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(90, 70, 255, 0.2);
+
+  position: sticky;
+  top: 10px;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px #7c5cff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.3s ease;
+}
+@media (max-width: 600px) {
+  .chat-container {
+    width: 95%;
+    padding: 18px;
+  }
+}
+.nav-links a:hover {
+  color: #b9aaff;
+  text-shadow: 0 0 12px #7c5cff;
+}
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 10px 20px;
+  border-bottom: 1px solid rgba(140, 110, 255, 0.3);
+  margin-bottom: 10px;
+}
+
+.chat-header > span {
+  font-size: 32px;
+  filter: drop-shadow(0 0 10px #7c5cff);
+}
+
+.chat-header strong {
+  display: block;
+  font-size: 20px;
+  text-shadow: 0 0 10px #7c5cff;
+}
+
+.chat-header small {
+  display: block;
+  margin-top: 4px;
+  color: #9daeff;
+  font-size: 12px;
+}
+.online-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #6cffb0;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #6cffb0;
+  animation: onlinePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes onlinePulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.3);
+  }
+}
+.nova::before {
+  content: "🦸‍♀️";
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 24px;
+  filter: drop-shadow(0 0 6px #7c5cff);
+}
+.typing {
+  display: inline-flex;
+  gap: 5px;
+  padding: 12px 16px;
+}
+
+.typing span {
+  width: 7px;
+  height: 7px;
+  background: #b9aaff;
+  border-radius: 50%;
+  animation: typingPulse 1.2s infinite;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingPulse {
+  0%, 60%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+   body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+    radial-gradient(circle, rgba(150,180,255,0.5) 1px, transparent 1px);
+  background-size: 80px 80px, 120px 120px;
+  background-position: 0 0, 40px 60px;
+  pointer-events: none;
+  opacity: 0.35;
+  animation: starMove 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes starMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-80px);
+  }
+}
+.hero-button {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 28px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #5f4bdb, #3478e5);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow:
+    0 0 15px rgba(100, 80, 255, 0.6),
+    0 0 35px rgba(80, 120, 255, 0.3);
+  transition: 0.3s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow:
+    0 0 20px rgba(120, 100, 255, 0.9),
+    0 0 45px rgba(80, 140, 255, 0.6),
+    0 0 70px rgba(150, 100, 255, 0.35);
+  letter-spacing: 2px;
+}
+@media (max-width: 600px) {
+  .mission-content {
+    flex-direction: column;
+  }
+
+  .mission-card {
+    width: 100%;
+  }
+}
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #050816;
+  text-align: center;
+}
+
+.loading-logo {
+  font-size: 48px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-shadow:
+    0 0 10px #7c5cff,
+    0 0 25px #7c5cff,
+    0 0 50px #4f8cff;
+  animation: loadingPulse 1.5s ease-in-out infinite;
+}
+
+.loading-screen p {
+  margin-top: 15px;
+  color: #b9aaff;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+@keyframes loadingPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+.section-divider {
+  width: 80%;
+  max-width: 700px;
+  margin: 20px auto 40px;
+  text-align: center;
+  color: #9d8cff;
+  font-size: 14px;
+  letter-spacing: 12px;
+  text-shadow:
+    0 0 8px #7c5cff,
+    0 0 20px #4f8cff;
+  opacity: 0.8;
+}
+.hero-tagline {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #c8cfff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(120, 100, 255, 0.7);
+  font-style: italic;
+}
+.how-help {
+  width: 90%;
+  max-width: 1000px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.how-help h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-shadow: 0 0 15px #7c5cff;
+}
+
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.help-card {
+  padding: 28px 22px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(130, 110, 255, 0.35);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(90, 70, 255, 0.2);
+  transition: 0.3s ease;
+}
+
+.help-card span {
+  display: block;
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.help-card h3 {
+  margin: 8px 0;
+  font-size: 20px;
+}
+
+.help-card p {
+  color: #d6dcff;
+  line-height: 1.6;
+}
+
+.help-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 35px rgba(120, 90, 255, 0.5);
+  border-color: rgba(180, 160, 255, 0.7);
+}
+@media (max-width: 600px) {
+  .help-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .help-card {
+    padding: 24px 18px;
+  }
+}
+.why-nova {
+  width: 90%;
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(140, 110, 255, 0.35);
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(90, 70, 255, 0.2);
+}
+
+.why-nova h2 {
+  font-size: 32px;
+  margin-top: 0;
+  text-shadow: 0 0 15px #7c5cff;
+}
+
+.why-intro {
+  max-width: 650px;
+  margin: 0 auto 35px;
+  color: #d6dcff;
+  font-size: 17px;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.why-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.why-points > div {
+  padding: 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  transition: 0.3s ease;
+}
+
+.why-points > div:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(120, 90, 255, 0.4);
+}
+
+.why-points strong {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.why-points p {
+  margin: 0;
+  color: #bfc8ef;
+  line-height: 1.5;
+}
+@media (max-width: 600px) {
+  .why-nova {
+    padding: 30px 18px;
+  }
+
+  .why-points {
+    grid-template-columns: 1fr;
+  }
+}
+ </style>
+
+</head>
+
+<body>
+  <nav class="navbar">
+  <div class="logo">NOVA ✦</div>
+
+  <div class="nav-links">
+    <a href="#origin">Origin</a>
+    <a href="#powers">Powers</a>
+    <a href="#mission">Mission</a>
+    <a href="#chat">Ask NOVA</a>
+  </div>
+</nav>
+  <div class="loading-screen" id="loadingScreen">
+  <div class="loading-logo">NOVA ✦</div>
+  <p>Connecting to the Hope Signal...</p>
+</div>
+
+
+    <section class="hero">
+        <img src="nova-hero.png" alt="NOVA - The Hero Who Listens" class="nova-hero-image">
+
+        <h1>NOVA</h1>
+
+        <h2>The Hero Who Listens</h2>
+
+        <p class="hero-tagline">
+  When the world goes silent, NOVA listens.
+</p>
+        <a href="#chat" class="hero-button">ASK NOVA FOR HELP</a>
+    </section>
+    <div class="section-divider">✦ ✦ ✦</div>
+
+<section class="origin" id="origin">
+  <h2>NOVA's Origin Story</h2>
+
+  <p>
+    In a world where countless voices go unheard, NOVA discovered a unique
+    power — the ability to sense when someone needed help.
+  </p>
+
+  <p>
+    Guided by a mysterious cosmic energy called the Hope Signal, she became
+    a guardian for people facing problems, fear, and uncertainty.
+  </p>
+
+  <p>
+    NOVA doesn't fight with strength alone. She listens, understands, and
+    turns every cry for help into a signal of hope.
+  </p>
+
+  <h3>“No problem should go unheard.”</h3>
+</section>
+<section class="how-help">
+  <h2>💙 How NOVA Helps</h2>
+
+  <div class="help-grid">
+    <div class="help-card">
+      <span>👂</span>
+      <h3>She Listens</h3>
+      <p>NOVA gives every voice a chance to be heard without judgment.</p>
+    </div>
+
+    <div class="help-card">
+      <span>🧠</span>
+      <h3>She Understands</h3>
+      <p>She understands the situation and identifies what kind of help is needed.</p>
+    </div>
+
+    <div class="help-card">
+      <span>🛡️</span>
+      <h3>She Guides</h3>
+      <p>NOVA turns every request into a Hope Signal and guides people toward support.</p>
+    </div>
+  </div>
+</section>
+<section class="why-nova">
+  <h2>✨ Why NOVA?</h2>
+
+  <p class="why-intro">
+    Because sometimes people don't need a hero who fights.
+    They need a hero who listens.
+  </p>
+
+  <div class="why-points">
+    <div>
+      <strong>🌍 Every Voice Matters</strong>
+      <p>No concern is too small to be heard.</p>
+    </div>
+
+    <div>
+      <strong>💙 No Judgment</strong>
+      <p>NOVA listens with empathy and understanding.</p>
+    </div>
+
+    <div>
+      <strong>🌟 Hope Starts With Listening</strong>
+      <p>Every conversation can be the beginning of change.</p>
+    </div>
+  </div>
+</section>
+<section class="powers" id="powers">
+  <h2>⚡ Powers & Abilities</h2>
+
+  <div class="power-grid">
+
+    <div class="power-card">
+      <h3>🌟 Hope Signal</h3>
+      <p>
+        NOVA can sense when someone needs help and creates a powerful
+        Hope Signal to guide them toward support.
+      </p>
+    </div>
+
+    <div class="power-card">
+      <h3>💙 Empathy Sense</h3>
+      <p>
+        She can understand emotions that others struggle to express,
+        allowing her to truly listen.
+      </p>
+    </div>
+
+    <div class="power-card">
+      <h3>🛡️ Cosmic Shield</h3>
+      <p>
+        NOVA can create a protective energy shield to defend people
+        from danger and fear.
+      </p>
+    </div>
+
+    <div class="power-card">
+      <h3>✨ Voice of Hope</h3>
+      <p>
+        Her voice can inspire courage, reminding people that they
+        are never alone.
+      </p>
+    </div>
+
+  </div>
+</section>
+<section class="mission" id="mission">
+  <h2>🦸‍♀️ Meet NOVA</h2>
+
+  <div class="mission-content">
+
+    <div class="mission-card">
+      <h3>🎯 Her Mission</h3>
+      <p>
+        NOVA believes that every person deserves to be heard.
+        Her mission is simple: listen to people, understand their
+        problems, and help connect them with hope.
+      </p>
+      <strong>“No problem should go unheard.”</strong>
+    </div>
+
+    <div class="mission-card">
+      <h3>💫 Her Personality</h3>
+      <p>
+        NOVA is calm, intelligent, friendly, and compassionate.
+        She never judges. She listens first, understands the situation,
+        and responds with courage and kindness.
+      </p>
+      <strong>Calm • Intelligent • Caring • Brave</strong>
+    </div>
+
+  </div>
+</section>
+    <div class="chat-container" id="chat">
+        <div class="chat-header">
+  <span>🦸‍♀️</span>
+  <div>
+    <strong>Talk to NOVA</strong>
+    <small><span class="online-dot"></span> Guardian of Hope • Online</small>
+  </div>
+</div>
+
+        <div class="chat-box" id="chatBox">
+
+            <div class="message nova">
+                👋 Hi! I'm <strong>NOVA</strong>.
+                I'm here to listen and help.
+            </div>
+
+            <div class="message nova">
+                First, what is your name?
+            </div>
+
+        </div>
+
+
+        <div class="input-area">
+
+            <input
+                type="text"
+                id="userInput"
+                placeholder="Type your answer..."
+            >
+
+            <button onclick="sendMessage()">
+                Send
+            </button>
+
+        </div>
+
+        <div class="status">
+            🔵 NOVA is online
+        </div>
+
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init({
+  publicKey: "cGmtj1J9BWYPj3559"
+});
+</script>
+<script>
+
+        let step = 0;
+
+        let userData = {
+            name: "",
+            age: "",
+            location: "",
+            email: "",
+            grievance: ""
+        };
+
+
+        function sendMessage() {
+
+            let input = document.getElementById("userInput");
+
+            let message = input.value.trim();
+
+            if (message === "") {
+                return;
+            }
+
+
+            addMessage(message, "user");
+
+            input.value = "";
+
+
+            if (step === 0) {
+
+                userData.name = message;
+
+                addNovaMessage(
+                    "Nice to meet you, " + userData.name + "! 😊 How old are you?"
+                );
+
+                step++;
+
+            }
+
+            else if (step === 1) {
+
+                userData.age = message;
+
+                addNovaMessage(
+                    "Got it! 📍 Which city or location are you from?"
+                );
+
+                step++;
+
+            }
+
+            else if (step === 2) {
+
+                userData.location = message;
+
+                addNovaMessage(
+                    "Thank you. 📧 What is your email address?"
+                );
+
+                step++;
+
+            }
+
+            else if (step === 3) {
+
+                userData.email = message;
+
+                addNovaMessage(
+                    "Thank you! ❤️ Now tell me... How can I help you?"
+                );
+
+                step++;
+
+            }
+
+            else if (step === 4) {
+
+                userData.grievance = message;
+                addNovaMessage("📨 Sending your request securely...");
+
+
+                emailjs.send("service_pv1aztc", "template_mqca49u", {
+  name: userData.name,
+  age: userData.age,
+  location: userData.location,
+  email: userData.email,
+  grievance: userData.grievance,
+  time: new Date().toLocaleString()
+})
+.then(function(response) {
+  console.log("Email sent successfully!", response.status, response.text);
+})
+.catch(function(error) {
+  console.log("Email failed:", error);
+  addNovaMessage("⚠️ I couldn't send your request right now. Please try again.");
+});
+
+                addNovaMessage(
+                    "I hear you, " + userData.name + ". 🦸‍♀️"
+                );
+
+               addNovaMessage("✅ Your request has been securely received.");
+addNovaMessage("Thank you for trusting NOVA. Your voice has been heard. 💙");
+
+                step++;
+                document.getElementById("userInput").disabled = true;
+
+                console.log(userData);
+            }
+
+        }
+
+
+        function addMessage(text, type) {
+
+            let chatBox = document.getElementById("chatBox");
+
+            let messageDiv = document.createElement("div");
+
+            messageDiv.className = "message " + type;
+
+            messageDiv.innerText = text;
+
+            chatBox.appendChild(messageDiv);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+        }
+function addNovaMessage(text) {
+
+    setTimeout(function () {
+
+        addMessage("•••", "nova typing");
+
+        setTimeout(function () {
+
+            let chatBox = document.getElementById("chatBox");
+            let typingMessage = chatBox.lastElementChild;
+
+            if (typingMessage) {
+                typingMessage.remove();
+            }
+
+            addMessage(text, "nova");
+
+        }, 800);
+
+    }, 500);
+
+}
+
+
+        document.getElementById("userInput").addEventListener(
+            "keypress",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    sendMessage();
+
+                }
+
+            }
+        );
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    document.getElementById("loadingScreen").style.display = "none";
+  }, 1200);
+});
+    </script>
+
+</body>
+
+</html>
